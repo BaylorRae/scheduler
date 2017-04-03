@@ -1,4 +1,6 @@
-# README
+# Scheduler Demo
+
+[![Build Status](https://travis-ci.org/BaylorRae/scheduler.svg?branch=master)](https://travis-ci.org/BaylorRae/scheduler)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
