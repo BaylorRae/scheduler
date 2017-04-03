@@ -2,9 +2,14 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
-require 'cucumber/rake/task'
+
+begin
+  require 'cucumber/rake/task'
+  Cucumber::Rake::Task.new
+rescue
+  puts "couldn't load rake tasks"
+end
 
 Rails.application.load_tasks
-Cucumber::Rake::Task.new
 
 task default: [:spec, :cucumber]
