@@ -1,3 +1,9 @@
+PATH
+  remote: ./engines/scheduler-api
+  specs:
+    scheduler-api (0.1.0)
+      rails (~> 5.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -229,6 +235,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rspec-rails (~> 3.5.2)
   sass-rails (~> 5.0)
+  scheduler-api!
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
