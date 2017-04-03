@@ -10,7 +10,8 @@ Feature: api/jobs
     Then all my jobs should be returned
 
   Scenario: create job
-    When pending
+    When I create a new job
+    Then the new job should be returned
 
   Scenario: update job
     When pending
