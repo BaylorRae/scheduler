@@ -15,6 +15,11 @@ module Scheduler
         @job.update_attributes!(job_params)
       end
 
+      def destroy
+        @job = current_user.jobs.find(params[:id])
+        @job.destroy
+      end
+
       private
 
       def job_params

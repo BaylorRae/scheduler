@@ -39,6 +39,10 @@ When(/^I update the last job$/) do
   }
 end
 
+When(/^I delete the last job$/) do
+  page.driver.delete "/api/jobs/#{@user.jobs.last.id}"
+end
+
 Then(/^all my jobs should be returned$/) do
   ValidateResponse.with(@last_response)
     .expect_status(:ok)
@@ -90,4 +94,22 @@ Then(/^the job should be updated$/) do
         "nextDue" => CalculateNextDueTime.from_job(Job.last).strftime(API_TIME_FORMAT),
         "runAt" => '18:00'
     })
+end
+
+Then(/^I should only have one job$/) do
+  @last_response = page.driver.get "/api/jobs"
+
+  ValidateResponse.with(@last_response)
+    .expect_status(:ok)
+    .expect_schema("./features/api/schemas/jobs/index.json")
+    .expect_body([
+      {
+        "command" => 'ls',
+        "dynoSize" => 'Free',
+        "runAt" => '02:30',
+        "frequency" => 'daily',
+        "lastRun" => nil,
+        "nextDue" => (DateTime.now + 1.day).change(hour: 2, min: 30).strftime(API_TIME_FORMAT)
+      }
+    ])
 end
