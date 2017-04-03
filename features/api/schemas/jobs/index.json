@@ -1,0 +1,16 @@
+{
+  "title": "jobs",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "command": { "type": "string" },
+      "dynoSize": { "type": "string" },
+      "frequency": { "type": "string" },
+      "lastRun": { "type": "date-time" },
+      "nextDue": { "type": "date-time" },
+      "runAt": { "type": "time" }
+    },
+    "required": ["command", "dynoSize", "frequency", "lastRun", "nextDue", "runAt"]
+  }
+}
