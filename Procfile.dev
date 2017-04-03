@@ -1,0 +1,2 @@
+rails: rails s
+client: cd client && ng serve --proxy-config proxy.conf.json
