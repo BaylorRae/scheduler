@@ -39,6 +39,7 @@ group :test do
   gem 'cucumber-rails', '~> 1.4.5'
   gem 'database_cleaner', '~> 1.5.3'
   gem 'json-schema', '~> 2.7.0'
+  gem 'timecop', '~> 0.8.1'
 end
 
 group :development, :test do

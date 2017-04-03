@@ -7,8 +7,16 @@ class CalculateNextDueTime
   }
 
   def self.from_job(job)
-    frequencyMethod = FREQUENCY_MAPPING[job.frequency]
-    raise ArgumentError if frequencyMethod.nil?
-    Time.parse(job.run_at + ' UTC') + 1.send(frequencyMethod)
+    frequency_method = FREQUENCY_MAPPING[job.frequency]
+    raise ArgumentError if frequency_method.nil?
+
+    last_run = job.last_run || Time.parse(job.run_at + ' UTC')
+    now = Time.now.utc
+
+    if job.frequency == 'hourly' && last_run <= now
+      last_run = last_run.change(hour: now.hour - 1, min: last_run.min)
+    end
+
+    last_run + 1.send(frequency_method)
   end
 end
