@@ -1,3 +1,3 @@
 Scheduler::Api::Engine.routes.draw do
-  resources :jobs
+  resources :jobs, defaults: { format: :json }
 end

@@ -4,7 +4,6 @@ Feature: api/jobs
   Background:
     Given I have created a user
 
-  @wip
   Scenario: all jobs
     Given I have created several jobs
     When I view all my jobs

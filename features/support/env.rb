@@ -58,3 +58,5 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 World(Rack::Test::Methods)
+
+API_TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%LZ".freeze
