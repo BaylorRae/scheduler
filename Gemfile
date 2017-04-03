@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 group :test do
   gem 'cucumber-rails', '~> 1.4.5'
+  gem 'database_cleaner', '~> 1.5.3'
 end
 
 group :development, :test do
