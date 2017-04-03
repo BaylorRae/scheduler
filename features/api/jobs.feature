@@ -14,4 +14,6 @@ Feature: api/jobs
     Then the new job should be returned
 
   Scenario: update job
-    When pending
+    Given I have created several jobs
+    When I update the last job
+    Then the job should be updated

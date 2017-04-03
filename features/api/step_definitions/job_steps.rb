@@ -30,6 +30,15 @@ When(/^I create a new job$/) do
   }
 end
 
+When(/^I update the last job$/) do
+  @last_response = page.driver.put "/api/jobs/#{@user.jobs.last.id}", {
+    command: "cat /etc/passwd",
+    dyno_size: "Premium",
+    frequency: "yearly",
+    run_at: '18:00'
+  }
+end
+
 Then(/^all my jobs should be returned$/) do
   ValidateResponse.with(@last_response)
     .expect_status(:ok)
@@ -65,5 +74,20 @@ Then(/^the new job should be returned$/) do
         "lastRun" => nil,
         "nextDue" => CalculateNextDueTime.from_job(Job.last).strftime(API_TIME_FORMAT),
         "runAt" => '13:30'
+    })
+end
+
+Then(/^the job should be updated$/) do
+  ValidateResponse.with(@last_response)
+    .expect_status(:ok)
+    .expect_schema("./features/api/schemas/jobs/job.json")
+    .expect_body({
+        "command" => 'cat /etc/passwd',
+        "dynoSize" => 'Premium',
+        "frequency" => 'yearly',
+        "lastRun" => nil,
+        "lastRun" => DateTime.new(2017, 1, 1, 18).strftime(API_TIME_FORMAT),
+        "nextDue" => CalculateNextDueTime.from_job(Job.last).strftime(API_TIME_FORMAT),
+        "runAt" => '18:00'
     })
 end

@@ -10,6 +10,11 @@ module Scheduler
         @job = current_user.jobs.create!(job_params)
       end
 
+      def update
+        @job = current_user.jobs.find(params[:id])
+        @job.update_attributes!(job_params)
+      end
+
       private
 
       def job_params
