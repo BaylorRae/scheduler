@@ -22,5 +22,7 @@ When(/^I view all my jobs$/) do
 end
 
 Then(/^all my jobs should be returned$/) do
-  expect(last_response.status).to eq(200)
+  ValidateResponse.with(last_response)
+    .expect_status(:ok)
+    .expect_schema("./features/api/schemas/jobs/index.json")
 end
