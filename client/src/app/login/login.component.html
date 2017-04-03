@@ -1,0 +1,20 @@
+<form (ngSubmit)="login()">
+  <p class="alert" *ngIf="error">
+    Invalid email or password.
+  </p>
+
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" name="email" id="email" [(ngModel)]="model.email" />
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password" [(ngModel)]="model.password" />
+  </div>
+
+  <div class="form-group">
+    <input class="btn btn-primary" type="submit" value="Log In" />
+  </div>
+
+</form>
