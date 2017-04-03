@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403025457) do
+ActiveRecord::Schema.define(version: 20170403035126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170403025457) do
     t.string   "dyno_size"
     t.string   "frequency"
     t.datetime "last_run"
-    t.datetime "next_due"
     t.time     "run_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
