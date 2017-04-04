@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { JobService } from '../_services/job.service';
 
-const defaultModel = { dynoSize: 'Hobby', frequency: 'daily', runAt: '00:30' };
-
 @Component({
   selector: 'new-job',
   templateUrl: './new-job.component.html',
@@ -11,10 +9,8 @@ const defaultModel = { dynoSize: 'Hobby', frequency: 'daily', runAt: '00:30' };
 })
 export class NewJobComponent implements OnInit {
   editing: boolean = false;
-  model: any = {};
 
   constructor(private jobService: JobService) {
-    this.model = defaultModel;
   }
 
   ngOnInit() {
@@ -25,15 +21,13 @@ export class NewJobComponent implements OnInit {
   }
 
   hideForm() {
-    this.model = defaultModel;
     this.editing = false;
   }
 
-  createJob() {
-    this.jobService.create(this.model)
+  createJob(job) {
+    this.jobService.create(job)
       .subscribe(
         job => {
-          this.model = {};
           this.editing = false;
         },
         error => {

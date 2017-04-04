@@ -1,0 +1,52 @@
+<form class="panel panel-default" (ngSubmit)="saveEvent()">
+  <div class="panel-body">
+    <div class="form-group">
+      <label for="command">Command</label>
+      <input class="form-control" placeholder="whoami" type="text" id="command" name="command" [(ngModel)]="model.command" />
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3">
+        <label for="dynoSize">Dyno Size</label>
+        <select class="form-control" name="dynoSize" id="dynoSize" [(ngModel)]="model.dynoSize">
+          <option>Free</option>
+          <option>Hobby</option>
+          <option>Standard</option>
+          <option>Performance</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="frequency">Frequency</label>
+        <select class="form-control" name="frequency" id="frequency" [(ngModel)]="model.frequency">
+          <option value="hourly">Hourly</option>
+          <option value="daily">Daily</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label>Last Run</label>
+        <p class="from-control-static">Never</p>
+      </div>
+
+      <div class="col-md-3">
+        <label for="runAt">Next Due</label>
+        <select class="form-control" name="runAt" id="runAt" [(ngModel)]="model.runAt">
+          <option>00:00</option>
+          <option>00:30</option>
+          <option>01:00</option>
+          <option>01:30</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <div class="form-group text-right">
+      <span class="btn btn-link" (click)="cancelEvent()">Cancel</span>
+      <input class="btn btn-primary" type="submit" value="Save" />
+    </div>
+  </div>
+</form>
