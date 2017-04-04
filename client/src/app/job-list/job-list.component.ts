@@ -14,7 +14,11 @@ class Job {
 export class JobListComponent implements OnInit {
   jobs: Job[] = [];
 
-  constructor(private jobService: JobService) { }
+  constructor(private jobService: JobService) {
+    jobService.jobCreated$.subscribe(jobId => {
+      this.loadJobs();
+    });
+  }
 
   ngOnInit() {
     this.loadJobs();

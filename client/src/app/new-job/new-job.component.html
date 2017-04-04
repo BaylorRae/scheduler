@@ -1,0 +1,39 @@
+<button *ngIf="!editing" (click)="showForm()">New Job</button>
+
+<form *ngIf="editing" (ngSubmit)="createJob()">
+  <div class="form-group">
+    <label for="command">Command</label>
+    <input placeholder="whoami" type="text" id="command" name="command" [(ngModel)]="model.command" />
+  </div>
+
+  <div class="form-group">
+    <label for="dynoSize">Dyno Size</label>
+    <select name="dynoSize" id="dynoSize" [(ngModel)]="model.dynoSize">
+      <option>Free</option>
+      <option>Hobby</option>
+      <option>Standard</option>
+      <option>Performance</option>
+    </select>
+
+    <label for="frequency">Frequency</label>
+    <select name="frequency" id="frequency" [(ngModel)]="model.frequency">
+      <option value="hourly">Hourly</option>
+      <option value="daily">Daily</option>
+      <option value="monthly">Monthly</option>
+      <option value="yearly">Yearly</option>
+    </select>
+
+    <label for="runAt">Next Due</label>
+    <select name="runAt" id="runAt" [(ngModel)]="model.runAt">
+      <option>00:00</option>
+      <option>00:30</option>
+      <option>01:00</option>
+      <option>01:30</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="Save" />
+    <span (click)="hideForm()">Cancel</span>
+  </div>
+</form>

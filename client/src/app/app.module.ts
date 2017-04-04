@@ -11,12 +11,14 @@ import { JobService } from './_services/job.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { JobListComponent } from './job-list/job-list.component';
+import { NewJobComponent } from './new-job/new-job.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    JobListComponent
+    JobListComponent,
+    NewJobComponent
   ],
   imports: [
     BrowserModule,
