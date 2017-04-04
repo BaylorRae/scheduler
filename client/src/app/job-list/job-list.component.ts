@@ -18,10 +18,18 @@ export class JobListComponent implements OnInit {
     jobService.jobCreated$.subscribe(jobId => {
       this.loadJobs();
     });
+
+    jobService.jobDeleted$.subscribe(jobId => {
+      this.loadJobs();
+    });
   }
 
   ngOnInit() {
     this.loadJobs();
+  }
+
+  removeJob(id: number) {
+    this.jobService.delete(id).subscribe();
   }
 
   private loadJobs() {
