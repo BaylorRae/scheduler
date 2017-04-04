@@ -6,14 +6,17 @@ import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
 
 import { AuthenticationService } from './_services/authentication.service';
+import { JobService } from './_services/job.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { JobListComponent } from './job-list/job-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    JobListComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { LoginComponent } from './login/login.component';
     routing
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    JobService
   ],
   bootstrap: [AppComponent]
 })
