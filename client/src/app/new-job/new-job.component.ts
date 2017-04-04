@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { JobService } from '../_services/job.service';
 
-const defaultModel = { dynoSize: 'Hobby', frequency: 'daily', nextDue: '00:30' };
+const defaultModel = { dynoSize: 'Hobby', frequency: 'daily', runAt: '00:30' };
 
 @Component({
   selector: 'new-job',
