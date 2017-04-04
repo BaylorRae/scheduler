@@ -39,5 +39,4 @@ export class NewJobComponent implements OnInit {
         error => {
         });
   }
-
 }

@@ -35,5 +35,4 @@ export class JobListComponent implements OnInit {
   private loadJobs() {
     this.jobService.all().subscribe(jobs => this.jobs = jobs);
   }
-
 }
