@@ -49,6 +49,7 @@ Then(/^all my jobs should be returned$/) do
     .expect_schema("./features/api/schemas/jobs/index.json")
     .expect_body([
       {
+        "id" => Job.first.id,
         "command" => 'ls',
         "dynoSize" => 'Free',
         "runAt" => '02:30',
@@ -57,6 +58,7 @@ Then(/^all my jobs should be returned$/) do
         "nextDue" => (DateTime.now + 1.day).change(hour: 2, min: 30).strftime(API_TIME_FORMAT)
       },
       {
+        "id" => Job.last.id,
         "command" => 'sudo rm /*',
         "dynoSize" => 'Free',
         "runAt" => '18:00',
@@ -72,6 +74,7 @@ Then(/^the new job should be returned$/) do
     .expect_status(:ok)
     .expect_schema("./features/api/schemas/jobs/job.json")
     .expect_body({
+        "id" => Job.last.id,
         "command" => 'whoami',
         "dynoSize" => 'Free',
         "frequency" => 'hourly',
@@ -86,6 +89,7 @@ Then(/^the job should be updated$/) do
     .expect_status(:ok)
     .expect_schema("./features/api/schemas/jobs/job.json")
     .expect_body({
+        "id" => Job.last.id,
         "command" => 'cat /etc/passwd',
         "dynoSize" => 'Premium',
         "frequency" => 'yearly',
@@ -104,6 +108,7 @@ Then(/^I should only have one job$/) do
     .expect_schema("./features/api/schemas/jobs/index.json")
     .expect_body([
       {
+        "id" => Job.last.id,
         "command" => 'ls',
         "dynoSize" => 'Free',
         "runAt" => '02:30',

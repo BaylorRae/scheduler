@@ -1,4 +1,5 @@
 json.(job,
+      :id,
       :command,
       :dyno_size,
       :run_at,

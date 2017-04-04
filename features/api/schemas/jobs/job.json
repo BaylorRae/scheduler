@@ -1,6 +1,7 @@
 {
   "type": "object",
   "properties": {
+    "id": { "type": "number" },
     "command": { "type": "string" },
     "dynoSize": { "type": "string" },
     "frequency": { "type": "string" },
@@ -8,5 +9,5 @@
     "nextDue": { "type": "date-time" },
     "runAt": { "type": "string" }
   },
-  "required": ["command", "dynoSize", "frequency", "lastRun", "nextDue", "runAt"]
+  "required": ["id", "command", "dynoSize", "frequency", "lastRun", "nextDue", "runAt"]
 }
