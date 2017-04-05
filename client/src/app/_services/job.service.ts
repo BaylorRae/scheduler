@@ -25,12 +25,19 @@ export class JobService {
         run_at: job.runAt
       })
       .map((response: Response) => response.json())
-      .map(job => this.jobCreatedSource.next(job.id));
+      .map(job => {
+        this.jobCreatedSource.next(job.id)
+        return job;
+      });
+  }
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete(`/api/jobs/${id}`)
       .map((response: Response) => response.json())
-      .map(job => this.jobDeletedSource.next(job.id));
+      .map(job => {
+        this.jobDeletedSource.next(job.id)
+        return job;
+      });
   }
 }
