@@ -25,7 +25,7 @@
 
       <div class="col-md-3">
         <label>Next Due</label>
-        <p class="from-control-static">{{job.nextDue}}</p>
+        <p class="from-control-static">{{job.nextDue | amUtc | amDateFormat:'MMM D k:mm z'}}</p>
       </div>
     </div>
   </div>
