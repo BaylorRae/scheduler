@@ -6,9 +6,11 @@ import { Http, Headers, Response } from '@angular/http';
 @Injectable()
 export class JobService {
   private jobCreatedSource = new Subject<number>();
+  private jobUpdatedSource = new Subject<number>();
   private jobDeletedSource = new Subject<number>();
 
   jobCreated$ = this.jobCreatedSource.asObservable();
+  jobUpdated$ = this.jobUpdatedSource.asObservable();
   jobDeleted$ = this.jobDeletedSource.asObservable();
 
   constructor(private http: Http) { }
@@ -30,6 +32,19 @@ export class JobService {
         return job;
       });
   }
+
+  update(id: number, job): Observable<void> {
+    return this.http.patch(`/api/jobs/${id}`, {
+        command: job.command,
+        dyno_size: job.dynoSize,
+        frequency: job.frequency,
+        run_at: job.runAt
+      })
+      .map((response: Response) => response.json())
+      .map(job => {
+        this.jobUpdatedSource.next(job.id)
+        return job;
+      });
   }
 
   delete(id: number): Observable<void> {

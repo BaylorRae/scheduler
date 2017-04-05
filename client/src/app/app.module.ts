@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { JobListComponent } from './job-list/job-list.component';
 import { NewJobComponent } from './new-job/new-job.component';
 import { JobFormComponent } from './job-form/job-form.component';
+import { JobItemComponent } from './job-item/job-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { JobFormComponent } from './job-form/job-form.component';
     LoginComponent,
     JobListComponent,
     NewJobComponent,
-    JobFormComponent
+    JobFormComponent,
+    JobItemComponent
   ],
   imports: [
     BrowserModule,

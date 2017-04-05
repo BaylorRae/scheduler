@@ -28,10 +28,6 @@ export class JobListComponent implements OnInit {
     this.loadJobs();
   }
 
-  removeJob(id: number) {
-    this.jobService.delete(id).subscribe();
-  }
-
   private loadJobs() {
     this.jobService.all().subscribe(jobs => this.jobs = jobs);
   }

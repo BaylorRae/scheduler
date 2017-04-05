@@ -1,8 +1,10 @@
 <form class="panel panel-default" (ngSubmit)="saveEvent()">
   <div class="panel-body">
     <div class="form-group">
-      <label for="command">Command</label>
-      <input class="form-control" placeholder="whoami" type="text" id="command" name="command" [(ngModel)]="model.command" />
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input class="form-control" placeholder="whoami" type="text" id="command" name="command" [(ngModel)]="model.command" />
+      </div>
     </div>
 
     <div class="form-group row">
@@ -44,9 +46,7 @@
   </div>
 
   <div class="panel-footer">
-    <div class="form-group text-right">
-      <span class="btn btn-link" (click)="cancelEvent()">Cancel</span>
-      <input class="btn btn-primary" type="submit" value="Save" />
-    </div>
+    <input class="btn btn-primary" type="submit" value="Save" />
+    <span class="btn btn-link" (click)="cancelEvent()">Cancel</span>
   </div>
 </form>

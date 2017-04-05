@@ -1,0 +1,39 @@
+<div *ngIf="!editing" class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control" value="{{job.command}}" readonly />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <label>Dyno Size</label>
+        <p class="from-control-static">{{job.dynoSize}}</p>
+      </div>
+
+      <div class="col-md-3">
+        <label>Frequency</label>
+        <p class="from-control-static">{{job.frequency}}</p>
+      </div>
+
+      <div class="col-md-3">
+        <label>Last Run</label>
+        <p class="from-control-static">{{job.lastRun || 'Never'}}</p>
+      </div>
+
+      <div class="col-md-3">
+        <label>Next Due</label>
+        <p class="from-control-static">{{job.nextDue}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <button (click)="editJob()" class="btn btn-primary">Edit</button>
+    <span (click)="removeJob(job.id)" class="btn btn-link">Remove</span>
+  </div>
+</div>
+
+<job-form *ngIf="editing" [job]="job" (cancel)="stopEditing()" (save)="saveJob($event)"></job-form>

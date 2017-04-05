@@ -15,6 +15,7 @@ export class JobFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.model = this.job || {};
   }
 
   cancelEvent() {
