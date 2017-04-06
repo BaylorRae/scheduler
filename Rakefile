@@ -6,8 +6,8 @@ require_relative 'config/application'
 begin
   require 'cucumber/rake/task'
   Cucumber::Rake::Task.new
-rescue
-  puts "couldn't load rake tasks"
+rescue LoadError
+  puts "couldn't load cucumber rake tasks"
 end
 
 Rails.application.load_tasks
