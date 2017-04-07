@@ -6,6 +6,8 @@ import { MomentModule } from 'angular2-moment';
 
 import { routing } from './app.routing';
 
+import { AuthGuard } from './_guards/auth.guard';
+
 import { AuthenticationService } from './_services/authentication.service';
 import { JobService } from './_services/job.service';
 
@@ -33,6 +35,7 @@ import { JobItemComponent } from './job-item/job-item.component';
     routing
   ],
   providers: [
+    AuthGuard,
     AuthenticationService,
     JobService
   ],

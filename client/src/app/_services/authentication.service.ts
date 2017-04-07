@@ -7,6 +7,10 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
   constructor(private http: Http) { }
 
+  authenticated(): boolean {
+    return localStorage.getItem('loggedIn') === 'true';
+  }
+
   login(email: string, password: string) {
     return this.http.post('/api/authenticate', { email: email, password: password })
       .map((response: Response) => {
