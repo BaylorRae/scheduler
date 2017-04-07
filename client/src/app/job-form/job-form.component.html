@@ -20,7 +20,7 @@
 
       <div class="col-md-3">
         <label for="frequency">Frequency</label>
-        <select required class="form-control" name="frequency" id="frequency" [(ngModel)]="model.frequency">
+        <select required class="form-control" name="frequency" id="frequency" [(ngModel)]="model.frequency" (change)="changeFrequency($event.target.value)">
           <option value="hourly">Hourly</option>
           <option value="daily">Daily</option>
           <option value="monthly">Monthly</option>
@@ -36,10 +36,7 @@
       <div class="col-md-3">
         <label for="runAt">Next Due</label>
         <select required class="form-control" name="runAt" id="runAt" [(ngModel)]="model.runAt">
-          <option>00:00</option>
-          <option>00:30</option>
-          <option>01:00</option>
-          <option>01:30</option>
+          <option *ngFor="let hour of runAtOptions">{{hour}}</option>
         </select>
       </div>
     </div>
