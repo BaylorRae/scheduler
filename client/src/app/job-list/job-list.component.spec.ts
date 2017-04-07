@@ -1,9 +1,17 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { DebugElement } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { MomentModule } from 'angular2-moment';
+
+import { JobService } from '../_services/job.service';
 
 import { JobListComponent } from './job-list.component';
+import { JobItemComponent } from '../job-item/job-item.component';
+import { NewJobComponent } from '../new-job/new-job.component';
+import { JobFormComponent } from '../job-form/job-form.component';
 
 describe('JobListComponent', () => {
   let component: JobListComponent;
@@ -11,7 +19,14 @@ describe('JobListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JobListComponent ]
+      imports: [ FormsModule, MomentModule, HttpModule ],
+      declarations: [
+        JobListComponent,
+        JobItemComponent,
+        NewJobComponent,
+        JobFormComponent
+      ],
+      providers: [ JobService ]
     })
     .compileComponents();
   }));

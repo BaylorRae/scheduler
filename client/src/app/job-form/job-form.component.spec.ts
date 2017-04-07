@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { DebugElement } from '@angular/core';
 
 import { JobFormComponent } from './job-form.component';
@@ -11,6 +12,7 @@ describe('JobFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ FormsModule ],
       declarations: [ JobFormComponent ]
     })
     .compileComponents();
