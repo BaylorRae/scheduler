@@ -1,3 +1,5 @@
+require "./lib/calculate_next_due_time"
+
 class Job < ApplicationRecord
   belongs_to :user
 
