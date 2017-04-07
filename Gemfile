@@ -35,6 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'rack-rewrite', '~> 1.5.1'
+
 group :test do
   gem 'cucumber-rails', '~> 1.4.5'
   gem 'database_cleaner', '~> 1.5.3'
