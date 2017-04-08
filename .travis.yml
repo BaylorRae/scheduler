@@ -10,3 +10,4 @@ before_script:
   - cd client && npm install
 script:
   - bundle exec rake
+  - cd client && npm run ci-test
