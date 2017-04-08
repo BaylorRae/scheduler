@@ -26,11 +26,6 @@ export class NewJobComponent implements OnInit {
 
   createJob(job) {
     this.jobService.create(job)
-      .subscribe(
-        job => {
-          this.editing = false;
-        },
-        error => {
-        });
+      .subscribe(job => { this.editing = false; });
   }
 }
