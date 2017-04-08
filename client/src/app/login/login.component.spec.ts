@@ -18,13 +18,21 @@ describe('LoginComponent', () => {
     navigate: jasmine.createSpy('navigate')
   }
 
+  const loginObservable = {
+    subscribe: jasmine.createSpy('observable')
+  }
+
+  const mockAuthenticationService = {
+    login: jasmine.createSpy('login').and.returnValue(loginObservable);
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpModule ],
       declarations: [ LoginComponent ],
       providers: [
         { provide: Router, useValue: mockRouter },
-        AuthenticationService
+        { provide: AuthenticationService, useValue: mockAuthenticationService }
       ]
     })
     .compileComponents();
@@ -38,5 +46,44 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('login', () => {
+    it('sends email and password to authentication service', () => {
+      component.model = {
+        email: 'bob@example.com',
+        password: 'password'
+      };
+
+      component.login();
+
+      expect(mockAuthenticationService.login).toHaveBeenCalledWith('bob@example.com', 'password');
+    });
+
+    it('redirects when successful', () => {
+      let successCallback;
+
+      loginObservable.subscribe = (success) => {
+        successCallback = success;
+      };
+
+      component.login();
+      successCallback();
+
+      expect(mockRouter.navigate).toHaveBeenCalledWith(['/']);
+    });
+
+    it('shows an error when invalid', () => {
+      let errorCallback;
+
+      loginObservable.subscribe = (success, error) => {
+        errorCallback = error;
+      };
+
+      component.login();
+      errorCallback();
+
+      expect(component.error).toBeTruthy();
+    });
   });
 });
