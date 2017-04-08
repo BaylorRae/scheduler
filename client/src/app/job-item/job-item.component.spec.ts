@@ -50,6 +50,22 @@ describe('JobItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('editJob', () => {
+    it('marks the item as editing', () => {
+      component.editing = false;
+      component.editJob();
+      expect(component.editing).toBeTruthy();
+    });
+  });
+
+  describe('stopEditing', () => {
+    it('marks the item as not editing', () => {
+      component.editing = true;
+      component.stopEditing();
+      expect(component.editing).toBeFalsy();
+    });
+  });
+
   describe('update', () => {
     it('saves thes changes made to the job', () => {
       component.job.id = 7331;
