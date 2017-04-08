@@ -8,7 +8,7 @@ require "./lib/calculate_next_due_time"
 describe CalculateNextDueTime do
 
   before do
-    Timecop.freeze(Date.new(2017, 1, 1))
+    Timecop.freeze(DateTime.new(2017, 1, 1, 0, 0))
   end
 
   after do
@@ -24,16 +24,21 @@ describe CalculateNextDueTime do
     end
 
     context "hourly" do
-      it "runs in the future" do
-        allow(job).to receive(:run_at) { '19:00' }
+      before do
         allow(job).to receive(:frequency) { 'hourly' }
-        expect(CalculateNextDueTime.from_job(job)).to eq(DateTime.new(2017, 1, 1, 20))
       end
 
-      it "runs at the next available hour" do
-        Timecop.freeze(DateTime.new(2017, 1, 1, 6)) do
-          allow(job).to receive(:frequency) { 'hourly' }
-          expect(CalculateNextDueTime.from_job(job)).to eq(DateTime.new(2017, 1, 1, 6, 30))
+      it "runs for the current hour" do
+        allow(job).to receive(:run_at) { '00:20' }
+        Timecop.freeze(DateTime.new(2017, 1, 1, 3, 15)) do
+          expect(CalculateNextDueTime.from_job(job)).to eq(DateTime.new(2017, 1, 1, 3, 20))
+        end
+      end
+
+      it "runs for the next hour it's passed" do
+        allow(job).to receive(:run_at) { '00:10' }
+        Timecop.freeze(DateTime.new(2017, 1, 1, 3, 11)) do
+          expect(CalculateNextDueTime.from_job(job)).to eq(DateTime.new(2017, 1, 1, 4, 10))
         end
       end
     end
