@@ -15,11 +15,22 @@ describe('JobItemComponent', () => {
   let component: JobItemComponent;
   let fixture: ComponentFixture<JobItemComponent>;
 
+  const deleteObservable = {
+    subscribe: jasmine.createSpy('delete.subscribe')
+  };
+
+  const mockJobService = {
+    update: jasmine.createSpy('update'),
+    delete: jasmine.createSpy('delete').and.returnValue(deleteObservable)
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, MomentModule, HttpModule ],
       declarations: [ JobItemComponent, JobFormComponent ],
-      providers: [ JobService ]
+      providers: [
+        { provide: JobService, useValue: mockJobService }
+      ]
     })
     .compileComponents();
   }));
@@ -33,5 +44,23 @@ describe('JobItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('update', () => {
+    it('saves thes changes made to the job');
+    it('marks editing as false');
+    it('updates the job to the response');
+  });
+
+  describe('delete', () => {
+    it('deletes the job', () => {
+      component.removeJob(1337);
+      expect(mockJobService.delete).toHaveBeenCalledWith(1337);
+    });
+
+    it('subscribes to the delete request', () => {
+      component.removeJob(1337);
+      expect(deleteObservable.subscribe).toHaveBeenCalled();
+    });
   });
 });
